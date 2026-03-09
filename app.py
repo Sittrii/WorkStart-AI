@@ -10,7 +10,7 @@ st.subheader("Tugas Kokurikuler")
 # Sidebar untuk pengaturan
 with st.sidebar:
     st.title("Pengaturan")
-    api_key = st.text_input("Masukkan Gemini API Key:", type="password")
+    api_key = st.text_input("AIzaSyDam5mNxj8SfaLPgEHV38EmaNdNKhKo4Ig:", type="password")
     st.info("Dapatkan API Key di [Google AI Studio](https://aistudio.google.com/)")
 
 # Inisialisasi chat history
@@ -35,7 +35,7 @@ if prompt := st.chat_input("Apa yang bisa saya bantu untuk tugasmu?"):
         # Proses jawaban dari AI
         try:
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-1.5-flash') # Versi cepat & gratis
+            model = genai.GenerativeModel("gemini-1.5-pro-latest") # Versi cepat & gratis
             
             with st.chat_message("assistant"):
                 response = model.generate_content(prompt)
