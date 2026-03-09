@@ -28,25 +28,21 @@ if prompt := st.chat_input("Apa yang bisa saya bantu untuk tugasmu?"):
     if not api_key:
         st.error("Isi API Key dulu di menu samping ya!")
     else:
-        # Menampilkan pesan user
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
         try:
-            # Konfigurasi Gemini
             genai.configure(api_key=api_key)
 
-            # Model AI
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            # MODEL YANG PALING AMAN
+            model = genai.GenerativeModel("gemini-pro")
 
-            # Generate jawaban
             response = model.generate_content(prompt)
 
             with st.chat_message("assistant"):
                 st.markdown(response.text)
 
-            # Simpan ke chat history
             st.session_state.messages.append({
                 "role": "assistant",
                 "content": response.text
